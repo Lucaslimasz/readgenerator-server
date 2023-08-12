@@ -1,9 +1,9 @@
+import 'dotenv/config';
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import router from './router';
 
-dotenv.config();
+import mongoose from 'mongoose'
 
 const app = express();
 const PORT = process.env.PORT || 3333;
@@ -13,6 +13,12 @@ app.use(express.json());
 
 app.use('/api/v1', router);
 
-app.listen(PORT, () => {
-    console.log(`[SERVER]: Server is running at http://localhost:${PORT}/api/v1`)
-});
+mongoose.connect(`${process.env.MONGO_URI}`).then(() => {
+    console.log('🔋 Banco conectado')
+    app.listen(PORT, () => {
+        console.log(`🚀 Servidor conectado: ${PORT}`)
+    });
+}).catch((err) => {
+    console.log('error ao conectar no MongoDB')
+    console.log(err)
+})

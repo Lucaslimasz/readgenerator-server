@@ -3,12 +3,13 @@ import { Request, Response } from 'express';
 import { questions } from '../questions';
 import { TemplateOne } from '../templates/templateOne';
 import { IQuestion } from '../interfaces/question';
+import Users from '../models/users';
 
 export const question = (_: any, res: Response) => {
   return res.status(200).json({ data: questions });
 };
 
-export const createReadme = (req: Request, res: Response) => {
+export const createReadme = async (req: Request, res: Response) => {
   try {
     const data = req.body;
     const questionsCompleted: IQuestion[] = [];
@@ -20,6 +21,9 @@ export const createReadme = (req: Request, res: Response) => {
         }
       }
     }
+
+    const user = questionsCompleted.find(item => item.id === 'user')
+    await Users.create({ name: user?.answer })
 
     const markdownContent = TemplateOne(questionsCompleted);
 
