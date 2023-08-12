@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { question, createReadme } from '../controllers/questions.routes';
+import { question, createReadme } from './controllers/questions';
 
 const router = Router();
 

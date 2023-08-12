@@ -1,7 +1,7 @@
 {
   "name": "readme-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Readme Generator is a project that aims to streamline the process of creating README on GitHub.",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts"

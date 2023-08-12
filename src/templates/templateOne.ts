@@ -1,4 +1,4 @@
-import { Question } from '../types/question';
+import { Question } from '../interfaces/question';
 
 export const TemplateOne = (data: Question[]): string | NodeJS.ArrayBufferView => {
     const properties: Record<string, string> = {
