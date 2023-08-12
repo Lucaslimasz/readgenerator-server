@@ -6,7 +6,7 @@ export const TemplateOne = (data: IQuestion[]): string | NodeJS.ArrayBufferView 
         'sub-title': '',
         'project-description': '',
         'project-image': '',
-        'link-project': '',
+        'link-figma': '',
         'tecnologies': '',
         'link-github': '',
         'start-project': '',
@@ -45,7 +45,7 @@ ${properties['project-description']}
 
 ## 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](${properties['link-project']}). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+Você pode visualizar o layout do projeto através [desse link](${properties['link-figma']}). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
 ---
 
