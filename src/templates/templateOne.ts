@@ -59,24 +59,18 @@ ${tecnologies}
 
 Clone o repositório:
 
-\`\`\`
+\`
 git clone ${properties['link-github']}
-\`\`\`
+\`
  
 ### 💻 Executando o projeto 🚀
 
 #### Na raiz do projeto, execute os comandos:
 
 # Para instalar as dependências
-
-\`\`\`
 ${manager}
-\`\`\`
 
 # Para startar o projeto utilize
-
-\`\`\`
 ${properties['start-project']}
-\`\`\`
 `;
 }
