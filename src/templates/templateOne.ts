@@ -1,36 +1,32 @@
 import { Question } from '../types/question';
 
 export const TemplateOne = (data: Question[]): string | NodeJS.ArrayBufferView => {
-    let title = '';
-    let subTitle = '';
-    let description = '';
-    let images = '';
-    let linkProject = '';
-    let tecnologies = '';
-    let linkRepo = '';
-    let tutorial = '';
-    let user = '';
+    const properties: Record<string, string> = {
+        'title': '',
+        'sub-title': '',
+        'project-description': '',
+        'project-image': '',
+        'link-project': '',
+        'tecnologies': '',
+        'link-github': '',
+        'tutorial': '',
+        'user': ''
+    };
 
-    data.map(item => {
-        if (item.id === 'title')
-            title = item.answer;
-        if (item.id === 'sub-title')
-            subTitle = item.answer;
-        if (item.id === 'project-description')
-            description = item.answer;
-        if (item.id === 'project-image')
-            images = item.answer.split(',').map(image => image).join('\n');
-        if (item.id === 'link-project')
-            linkProject = item.answer;
-        if (item.id === 'tecnologies')
-            tecnologies = item.answer.split(',').map(tech => `- ${tech.trim()}`).join('\n');
-        if (item.id === 'link-github')
-            linkRepo = item.answer;
-        if (item.id === 'tutorial')
-            tutorial = item.answer;
-        if (item.id === 'user')
-            user = item.answer;
-    })
+    data.forEach(item => {
+        if (item.id in properties) {
+            properties[item.id] = item.answer;
+        }
+    });
+
+    const images = properties['project-image'].split(',').map(image => image.trim()).join('\n');
+    const tecnologies = properties['tecnologies'].split(',').map(tech => `- ${tech.trim()}`).join('\n');
+
+    return generateMD(properties, images, tecnologies);
+}
+
+const generateMD = (properties: Record<string, string>, images: string, tecnologies: string) => {
+    const { title, subTitle, description, linkProject, linkRepo, tutorial } = properties;
 
     return `<p align="center">
     <img alt="${title}" title="${title}" src="${images}" width="100%">
