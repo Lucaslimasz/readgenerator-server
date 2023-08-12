@@ -6,7 +6,11 @@ import { IQuestion } from '../interfaces/question';
 
 import Users from '../models/users';
 
-export const question = (_: any, res: Response) => {
+export const question = async (_: any, res: Response) => {
+  questions.map(question => ({
+    ...question,
+    usersCount: Users.usersCount(),
+  }));
   return res.status(200).json({ data: questions });
 };
 
