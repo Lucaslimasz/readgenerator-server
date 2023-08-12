@@ -1,6 +1,6 @@
-import { Question } from '../interfaces/question';
+import { IQuestion } from '../interfaces/question';
 
-export const TemplateOne = (data: Question[]): string | NodeJS.ArrayBufferView => {
+export const TemplateOne = (data: IQuestion[]): string | NodeJS.ArrayBufferView => {
     const properties: Record<string, string> = {
         'title': '',
         'sub-title': '',

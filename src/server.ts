@@ -7,18 +7,20 @@ import mongoose from 'mongoose'
 
 const app = express();
 const PORT = process.env.PORT || 3333;
+const ORIGIN_URL = process.env.ORIGIN_URL || '*';
 
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: `${ORIGIN_URL}` }));
 app.use(express.json());
 
 app.use('/api/v1', router);
 
 mongoose.connect(`${process.env.MONGO_URI}`).then(() => {
-    console.log('🔋 Banco conectado')
+    console.log('🔋 Database connected!')
+
     app.listen(PORT, () => {
-        console.log(`🚀 Servidor conectado: ${PORT}`)
+        console.log(`🚀 Connected server on port: ${PORT}`)
     });
 }).catch((err) => {
-    console.log('error ao conectar no MongoDB')
+    console.log('Error connecting to database.')
     console.log(err)
 })
