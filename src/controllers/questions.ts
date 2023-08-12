@@ -7,10 +7,12 @@ import { IQuestion } from '../interfaces/question';
 import Users from '../models/users';
 
 export const question = async (_: any, res: Response) => {
+  const usersCount = Users.usersCount();
   const questionsWithCount = questions.map(question => ({
     ...question,
-    usersCount: Users.usersCount(),
+    usersCount: usersCount,
   }));
+  
   return res.status(200).json({ data: questionsWithCount });
 };
 
