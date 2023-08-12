@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import { question, createReadme } from './controllers/questions';
+import * as questions from './controllers/questions';
 
 const router = Router();
 
-router.get('/questions', question);
-router.post('/questions', createReadme);
+router.get('/questions', questions.question);
+router.post('/questions', questions.createReadme);
 
 export default router;
