@@ -26,21 +26,23 @@ export const createReadme = (req: Request, res: Response) => {
 
         const markdownContent = TemplateOne(questionsCompleted);
 
-        const filePath = path.join(__dirname, 'README.md');
+        return res.json(markdownContent)
 
-        fs.writeFile(filePath, markdownContent, err => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send('Error generating Markdown file.');
-            }
+        // const filePath = path.join(__dirname, 'README.md');
 
-            res.set('Content-Type', 'text/markdown');
-            res.sendFile(filePath, {}, () => {
-                fs.unlink(filePath, err => {
-                    if (err) return console.log(err);
-                });
-            });
-        });
+        // fs.writeFile(filePath, markdownContent, err => {
+        //     if (err) {
+        //         console.error(err);
+        //         return res.status(500).send('Error generating Markdown file.');
+        //     }
+
+        //     res.set('Content-Type', 'text/markdown');
+        //     res.sendFile(filePath, {}, () => {
+        //         fs.unlink(filePath, err => {
+        //             if (err) return console.log(err);
+        //         });
+        //     });
+        // });
     } catch (error) {
         console.error(error);
         return res.status(500).send('An error occurred.');
