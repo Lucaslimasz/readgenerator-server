@@ -32,11 +32,7 @@ export const TemplateOne = (data: Question[]): string | NodeJS.ArrayBufferView =
             user = item.answer;
     })
 
-    return `<h1 align="center">
-    <img alt="${title}" title="${title}" src="${images}" width="220px" />
-</h1>
-    
-<p align="center">
+    return `<p align="center">
     <img alt="${title}" title="${title}" src="${images}" width="100%">
 </p>
 
@@ -66,9 +62,9 @@ ${tecnologies}
 
 Clone o repositório:
 
-&lsquo;
+\`\`\`
 git clone ${linkRepo}
-&rsquo;
+\`\`\`
  
 ### 💻 Executando o projeto 🚀
 
