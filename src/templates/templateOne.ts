@@ -20,7 +20,7 @@ export const TemplateOne = (data: IQuestion[]): string | NodeJS.ArrayBufferView 
     });
 
     const images = properties['project-image'].split(',').map(img => (
-        `<img alt="${properties['title']}" title="${properties['title']} src="${img}" width="100%">`
+        `<img alt="${properties['title']}" title="${properties['title']} src="${img}" width="100%" />`
     )).join('\n');
     const tecnologies = properties['tecnologies'].split(',').map(tec => `- ${tec.trim()}`).join('\n');
     const manager = properties['start-project'].startsWith('npm') ? 'npm install' : 'yarn';
