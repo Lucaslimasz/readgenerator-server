@@ -7,11 +7,11 @@ import { IQuestion } from '../interfaces/question';
 import Users from '../models/users';
 
 export const question = async (_: any, res: Response) => {
-  questions.map(question => ({
+  const questionsWithCount = questions.map(question => ({
     ...question,
     usersCount: Users.usersCount(),
   }));
-  return res.status(200).json({ data: questions });
+  return res.status(200).json({ data: questionsWithCount });
 };
 
 export const createReadme = async (req: Request, res: Response) => {
