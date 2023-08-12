@@ -16,8 +16,8 @@ export const questions = [
         question: 'Quais os link das imagens do projeto? (Separe por vírgulas)',
     },
     {
-        id: 'link-project',
-        question: 'Qual o link do projeto no ar?',
+        id: 'link-figma',
+        question: 'Qual o link do figma do projeto?',
     },
     {
         id: 'tecnologies',
