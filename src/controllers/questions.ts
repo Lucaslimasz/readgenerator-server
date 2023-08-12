@@ -8,7 +8,6 @@ import Users from '../models/users';
 
 export const question = async (_: any, res: Response) => {
   const users = await Users.find();
-
   return res.status(200).json({ data: questions, usersQuantity: users.length });
 };
 
