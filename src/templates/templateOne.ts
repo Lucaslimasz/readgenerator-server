@@ -19,7 +19,9 @@ export const TemplateOne = (data: IQuestion[]): string | NodeJS.ArrayBufferView 
         }
     });
 
-    const images = properties['project-image'].split(',').map(image => image.trim()).join('\n');
+    const images = properties['project-image'].split(',').map(img => (
+        `<img alt="${properties['title']}" title="${properties['title']} src="${img}" width="100%">`
+    )).join('\n');
     const tecnologies = properties['tecnologies'].split(',').map(tec => `- ${tec.trim()}`).join('\n');
     const manager = properties['start-project'].startsWith('npm') ? 'npm install' : 'yarn';
 
@@ -28,7 +30,7 @@ export const TemplateOne = (data: IQuestion[]): string | NodeJS.ArrayBufferView 
 
 const generateMD = (properties: Record<string, string>, images: string, tecnologies: string, manager: string) => {
     return `<p align="center">
-    <img alt="${properties['title']}" title="${properties['title']}" src="${images}" width="100%">
+    ${images}
 </p>
 
 <br/>
