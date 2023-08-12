@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { questions } from '../questions';
 import { TemplateOne } from '../templates/templateOne';
 import { IQuestion } from '../interfaces/question';
+
 import Users from '../models/users';
 
 export const question = (_: any, res: Response) => {
