@@ -26,7 +26,7 @@ export const createReadme = (req: Request, res: Response) => {
     const markdownContent = TemplateOne(questionsCompleted);
 
     const filePath = path.join(__dirname, 'README.md');
-
+    
     fs.writeFile(filePath, markdownContent, err => {
         if (err) {
             console.error(err);
@@ -34,11 +34,10 @@ export const createReadme = (req: Request, res: Response) => {
         }
 
         res.set('Content-Type', 'text/markdown');
-        res.sendFile(filePath);
+        res.sendFile(filePath, {}, () => {
+            fs.unlink(filePath,  err => {
+                if (err) return console.log(err);
+            });
+        });
     });
-
-    // fs.unlink(filePath, function (err) {
-    //     if (err) return console.log(err);
-    //     console.log('file deleted successfully');
-    // });
 }
