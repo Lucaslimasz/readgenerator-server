@@ -9,7 +9,7 @@ export const TemplateOne = (data: Question[]): string | NodeJS.ArrayBufferView =
         'link-project': '',
         'tecnologies': '',
         'link-github': '',
-        'tutorial': '',
+        'start-project': '',
         'user': ''
     };
 
@@ -20,31 +20,30 @@ export const TemplateOne = (data: Question[]): string | NodeJS.ArrayBufferView =
     });
 
     const images = properties['project-image'].split(',').map(image => image.trim()).join('\n');
-    const tecnologies = properties['tecnologies'].split(',').map(tech => `- ${tech.trim()}`).join('\n');
+    const tecnologies = properties['tecnologies'].split(',').map(tec => `- ${tec.trim()}`).join('\n');
+    const manager = properties['start-project'].startsWith('npm') ? 'npm install' : 'yarn';
 
-    return generateMD(properties, images, tecnologies);
+    return generateMD(properties, images, tecnologies, manager);
 }
 
-const generateMD = (properties: Record<string, string>, images: string, tecnologies: string) => {
-    const { title, subTitle, description, linkProject, linkRepo, tutorial } = properties;
-
+const generateMD = (properties: Record<string, string>, images: string, tecnologies: string, manager: string) => {
     return `<p align="center">
-    <img alt="${title}" title="${title}" src="${images}" width="100%">
+    <img alt="${properties['title']}" title="${properties['title']}" src="${images}" width="100%">
 </p>
 
 <br/>
 
-# ${title}
+# ${properties['title']}
 
-> ${title} | ${subTitle}
+> ${properties['title']} | ${properties['sub-title']}
 
 ## 💻 Projeto
 
-${description}
+${properties['project-description']}
 
 ## 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](${linkProject}). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+Você pode visualizar o layout do projeto através [desse link](${properties['link-project']}). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
 ---
 
@@ -59,11 +58,23 @@ ${tecnologies}
 Clone o repositório:
 
 \`\`\`
-git clone ${linkRepo}
+git clone ${properties['link-github']}
 \`\`\`
  
 ### 💻 Executando o projeto 🚀
 
-${tutorial}
+#### Na raiz do projeto, execute os comandos:
+
+# Para instalar as dependências
+
+\`\`\`
+${manager}
+\`\`\`
+
+# Para startar o projeto utilize
+
+\`\`\`
+${properties['start-project']}
+\`\`\`
 `;
 }

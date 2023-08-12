@@ -28,8 +28,8 @@ export const questions = [
         question: 'Qual o link do repositório no GitHub?',
     },
     {
-        id: 'tutorial',
-        question: 'Qual é o tutorial para iniciar o projeto?',
+        id: 'start-project',
+        question: 'Qual é o comando para iniciar o projeto em desenvolvimento?',
     },
     {
         id: 'user',
