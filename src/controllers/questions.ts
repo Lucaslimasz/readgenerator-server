@@ -5,6 +5,7 @@ import { TemplateOne } from '../templates/templateOne';
 import { IQuestion } from '../interfaces/question';
 
 import Users from '../models/users';
+import axios from 'axios';
 
 export const question = async (_: any, res: Response) => {
   const users = await Users.find();
@@ -25,7 +26,21 @@ export const createReadme = async (req: Request, res: Response) => {
     }
 
     const user = questionsCompleted.find(item => item.id === 'user')
-    await Users.create({ name: user?.answer })
+
+    if (!user) {
+      return res.status(404).send('User not found.');
+    }
+
+    const githubUser = user.answer;
+
+    try {
+      await axios.get(`https://api.github.com/users/${githubUser}`);
+    } catch (error) {
+      console.error(error);
+      return res.status(404).send('User not found.');
+    }
+
+    await Users.create({ name: githubUser });
 
     const markdownContent = TemplateOne(questionsCompleted);
 
