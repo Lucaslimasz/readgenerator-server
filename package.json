@@ -1,5 +1,5 @@
 {
-  "name": "readme-generator",
+  "name": "readgenerator-server",
   "version": "1.0.0",
   "description": "Readme Generator is a project that aims to streamline the process of creating README on GitHub.",
   "main": "index.js",
