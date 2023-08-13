@@ -25,7 +25,7 @@ export const createReadme = async (req: Request, res: Response) => {
       }
     }
 
-    const user = questionsCompleted.find(item => item.id === 'user')
+    const user = questionsCompleted.find(item => item.id === 'user');
 
     if (!user) {
       return res.status(404).send('User not found.');
@@ -44,7 +44,7 @@ export const createReadme = async (req: Request, res: Response) => {
 
     const markdownContent = TemplateOne(questionsCompleted);
 
-    return res.json(markdownContent)
+    return res.json(markdownContent);
   } catch (error) {
     console.error(error);
     return res.status(500).send('An error occurred.');
