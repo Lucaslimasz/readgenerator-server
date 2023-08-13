@@ -29,48 +29,34 @@ export const TemplateOne = (data: IQuestion[]): string | NodeJS.ArrayBufferView 
 }
 
 const generateMD = (properties: Record<string, string>, images: string, tecnologies: string, manager: string) => {
-    return `<p align="center">
-    ${images}
-</p>
+    let sections = [];
 
-<br/>
+    if (properties['project-image'])
+        sections.push(`<p align="center">\n${images}\n</p>\n\n<br/>`);
 
-# ${properties['title']}
+    if (properties['title'])
+        sections.push(`# ${properties['title']}`);
 
-> ${properties['title']} | ${properties['sub-title']}
+    if (properties['title'] && properties['sub-title'])
+        sections.push(`> ${properties['title']} | ${properties['sub-title']}`);
 
-## 💻 Projeto
+    if (properties['project-description'])
+        sections.push(`## 💻 Projeto \n\n${properties['project-description']}`);
 
-${properties['project-description']}
+    if (properties['link-figma'])
+        sections.push(`## 🔖 Layout\n\nVocê pode visualizar o layout do projeto através [desse link](${properties['link-figma']}). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.\n\n---`);
 
-## 🔖 Layout
+    if (properties['tecnologies'])
+        sections.push(`### 📄 O que foi usado:\n\n${tecnologies}`);
 
-Você pode visualizar o layout do projeto através [desse link](${properties['link-figma']}). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+    if (properties['link-github'])
+        sections.push(`### 🛠 Mão na massa:\n\n> Você pode realizar o clone deste repositório!\n\nClone o repositório:\n\n\`git clone ${properties['link-github']}\n\``);
 
----
+    if (properties['start-project'] && manager)
+        sections.push(`### 💻 Executando o projeto 🚀\n\n#### Na raiz do projeto, execute os comandos:\n\n# Para instalar as dependências\n${manager}`);
 
-### 📄 O que foi usado:
+    if (properties['start-project'])
+        sections.push(`# Para startar o projeto utilize\n${properties['start-project']}`);
 
-${tecnologies}
-
-### 🛠 Mão na massa:
-
-> Você pode realizar o clone deste repositório!
-
-Clone o repositório:
-
-\`
-git clone ${properties['link-github']}
-\`
- 
-### 💻 Executando o projeto 🚀
-
-#### Na raiz do projeto, execute os comandos:
-
-# Para instalar as dependências
-${manager}
-
-# Para startar o projeto utilize
-${properties['start-project']}
-`;
+    return sections.join('\n\n').replace(/\n\s*\n/g, '\n\n');
 }
