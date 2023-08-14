@@ -20,7 +20,7 @@ export const questions = [
         question: 'Qual o link do figma do projeto?',
     },
     {
-        id: 'tecnologies',
+        id: 'technologies',
         question: 'Quais tecnologias foram usadas no projeto? (Separe por vírgulas)',
     },
     {

@@ -27,9 +27,7 @@ export const createReadme = async (req: Request, res: Response) => {
 
     const user = questionsCompleted.find(item => item.id === 'user');
 
-    if (!user) {
-      return res.status(404).send('User not found.');
-    }
+    if (!user) return res.status(404).send('User not found.');
 
     const githubUser = user.answer;
 
