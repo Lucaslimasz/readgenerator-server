@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3333;
 const ORIGIN_URL = process.env.ORIGIN_URL || '*';
 
-app.use(cors({ origin: * }));
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 app.use('/api/v1', router);
