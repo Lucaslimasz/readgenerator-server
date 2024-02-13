@@ -7,28 +7,27 @@ export const TemplateOne = (data: IQuestion[]): string | NodeJS.ArrayBufferView 
         'project-description': '',
         'project-image': '',
         'link-figma': '',
-        'tecnologies': '',
+        'technologies': '',
         'link-github': '',
         'start-project': '',
         'user': ''
     };
 
     data.forEach(item => {
-        if (item.id in properties) {
+        if (item.id in properties)
             properties[item.id] = item.answer;
-        }
     });
 
     const images = properties['project-image'].split(',').map(img => (
         `<img alt="${properties['title']}" title="${properties['title']}" src="${img.trim()}" width="100%" />`
     )).join('\n');
-    const tecnologies = properties['tecnologies'].split(',').map(tec => `- ${tec.trim()}`).join('\n');
+    const technologies = properties['technologies'].split(',').map(tec => `- ${tec.trim()}`).join('\n');
     const manager = properties['start-project'].startsWith('npm') ? 'npm install' : 'yarn';
 
-    return generateMD(properties, images, tecnologies, manager);
+    return generateMD(properties, images, technologies, manager);
 }
 
-const generateMD = (properties: Record<string, string>, images: string, tecnologies: string, manager: string) => {
+const generateMD = (properties: Record<string, string>, images: string, technologies: string, manager: string) => {
     let sections = [];
 
     if (properties['project-image'])
@@ -46,8 +45,8 @@ const generateMD = (properties: Record<string, string>, images: string, tecnolog
     if (properties['link-figma'])
         sections.push(`## 🔖 Layout\n\nVocê pode visualizar o layout do projeto através [desse link](${properties['link-figma']}). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.\n\n---`);
 
-    if (properties['tecnologies'])
-        sections.push(`### 📄 O que foi usado:\n\n${tecnologies}`);
+    if (properties['technologies'])
+        sections.push(`### 📄 O que foi usado:\n\n${technologies}`);
 
     if (properties['link-github'])
         sections.push(`### 🛠 Mão na massa:\n\n> Você pode realizar o clone deste repositório!\n\nClone o repositório:\n\n\`git clone ${properties['link-github']}\n\``);
